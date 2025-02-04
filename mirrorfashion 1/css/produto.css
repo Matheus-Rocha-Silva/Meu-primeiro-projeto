@@ -1,0 +1,280 @@
+.cores label:after {
+	border: 6px solid rgba(0,0,0,0);
+	transition: 1s;
+}
+
+/*estilo para quando passar o mouse em cima da bolinha, como mostrar
+uma borda mais leve, também no início de produto.css:*/
+.cores label:hover:after{
+	border: 6px solid rgba(0, 0, 0, 0.1);
+}
+
+
+
+/*desenhar as bolinhas coloridas com pseudo-elementos do CSS3 usando um truque com
+bordas redondas grandes:*/
+.cores label:after {
+	content: '';
+	display: block;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+label[for=verde]:after {
+	background-color: #33CC66;
+}
+
+label[for=rosa]:after {
+	background-color: #FF6666;
+}
+
+label[for=azul]:after {
+	background-color: #6666FF;
+}
+
+/*estilizar a bolinha atualmente selecionada usando pseudo-classe :checked:*/
+.cores label:after {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+
+/*conguradas, a bolinha do input radio é desnecessária.*/
+.cores input[type=radio] {
+	display: none;
+}
+
+/*que devemos esconder as imagens dos radios não selecionados. Podemos
+usar um seletor avançado para isso:*/
+.cores input:not(:checked) + label img {
+	display: none;
+}
+
+/*implementar o posicionamento correto das bolinhas lado a
+lado.*/
+.cores label:after {
+	position: absolute;
+}
+
+/*abrir espaço para as bolinhas:*/
+.cores{
+	position: relative;
+	padding-top: 90px;
+}
+
+.cores label:after {
+	position: absolute;
+	top: 30px;
+}
+
+/*As bolinhas caram sobrepostas na esquerda. Para corrigir, basta colocar uma coordenada left diferente
+para cada uma:*/
+label[for=verde]:after{
+	left: 0;
+}
+
+label[for=rosa]:after{
+	left: 60px;
+}
+
+label[for=azul]:after{
+	left: 120px;
+}
+
+/*Uma forma de resolver esse problema no Firefox é deixar o <legend> posicionado absolutamente:
+.cores legend {
+position: absolute;
+top: 0;
+left: 0;
+}*/
+
+/*garantir que ela nunca passe o tamanho do pai com max-width:*/
+.cores label img{
+	display: block;
+	max-width: 100%;
+}
+
+/*Nosso max-width: 100% não vai funcionar no Firefox. Neste navegador, o elemento fieldset
+não respeita o comportamento correto de largura de um elemento e, assim, a largura da imagem
+também ca incorreta.*/
+
+/*Para contornar o bug, podemos colocar a propriedade display com o valor table-column no
+eldset:
+
+fieldset {
+	display: table-column;
+}*/
+
+/*A solução é aplicar
+essa regra somente no Firefox. Para isso, podemos colocar essa regra dentro de uma media query
+que só vai funcionar nesse navegador. Por exemplo:
+
+@media (min--moz-device-pixel-ratio:0) {
+	fieldset {
+		display: table-column;
+	}
+}*/
+
+/*Se estiver desenvolvendo para o Firefox, coloque o código acima logo no começo do arquivo
+CSS.*/
+
+/*vamos estilizar alguns detalhes visuais da página.*/
+.produto{
+	color: #333;
+	line-height: 1.3;
+	margin-top; 2em;
+}
+
+/*O nome do produto e seu preço também ganham estilo:*/
+.produto h1{
+	font-size: 1.8em;
+	font-weight: bold;
+}
+
+.produto p{
+	font-size: 1.2em;
+	font-style: italic;
+	margin-bottom: 1em;
+}
+
+/*O <legend> ganha um destaque:*/
+.produto legend{
+	display: block;
+font: bold 0.9em/2.5 Arial;
+text-transform: uppercase;	
+}
+
+/*E por fim, o botão de comprar deve car em evidência:*/
+.comprar{
+	background: #91bd3c;
+	border: none;
+	color: #333;
+	
+	font-size: 1.4em;
+	text-transform: uppercase;
+	
+	box-shadow: 0 1px 3px #777;
+	
+	display: block;
+	padding: 0.5em 1em;
+	margin: 1em 0;
+}
+
+/*(opcional) Quando selecionamos a bolinha, uma borda escura aparece. Use transition para fazer a
+borda aparecer suavemente, como um fadein.*/
+/*seletor no início de produto.css:*/
+
+/*media query*/
+
+@media(min-width: 630px){
+	.produto{
+		position: relative;
+		padding-left: 40%;
+		
+		/*aumentar um pouco o tamanho das fontes usadas no produto.*/
+		font-size: 1.2em;
+	}
+	
+	.cores{
+		position: static;
+		padding: 0;
+	}
+	
+	.cores legend{
+		position: static;
+	}
+	
+	.cores label img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		
+		/*novas regras*/
+		max-width: 35%;
+		max-height: 100%;
+	}
+	
+	.cores label:after{
+		position: static;
+		float: left;
+		
+		/*Último ajuste é uma pequena margem entre as bolinhas coloridas:*/
+		margin-right: 10px;
+	}
+	
+	/*formatação de fieldset*/
+	.fieldset{
+		display: inline-block;
+		vertical-align: top;
+		
+		margin: 1em 0;
+		min-width: 200px;
+		width: 45%;
+	}
+}
+
+/*As próximas regras devem ser adicionadas dentro da media query anterior. Você pode até escrever apenas
+as propriedades dentro dos seletores existentes na media query.*/
+
+/*Estilizar descrição*/
+.detalhes{
+	padding: 2em 0;
+}
+
+.detalhes h2{
+	font-size: 1.5em;
+	line-height: 2;
+}
+
+.detalhes p{
+	margin: 1em 0;
+	font-size: 1em;
+	line-height: 1.5;
+	max-width: 36em;
+}
+
+@media(min-width: 500px){
+	.detalhes{
+		font-size: 1.2em;
+	}	
+}
+
+/*seletor de lhos múltiplos para um estilo zebrado.*/
+table{
+	border-spacing: 0.2em;
+	border-collapse: separate;
+}
+
+thead{
+	background-color: #999;
+}
+
+thead th{
+	font-weight: bold;
+	padding: 0.3em 1em;
+	text-align: center;
+}
+
+td{
+	padding: 0.3em;
+}
+
+tr:nth-child(2n){
+	background-color: #ccc;
+}
+
+td:first-child{
+	font-style: italic;
+}
+
+/*usando uma cor e bordas sutis para criar um efeito mais elegante:*/
+.produto-back{
+	background-color: #F2F2F2;
+	margin-top: 1em;
+	border-top: 2px solid #ccc;
+}
+
+.cores label img{
+	border: 2px solid #ccc;
+}

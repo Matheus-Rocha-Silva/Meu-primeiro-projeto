@@ -1,0 +1,109 @@
+/*remover esse tamanho absoluto e colocar
+algum que faça mais sentido em telas menores,*/
+.container{
+	width: 96%;
+}
+
+/*ajustar os elementos do topo da página. centralizar o logotipo na página,
+esconder as informações (secundárias) sobre a Sacola e ajustar o menu para car abaixo do logo*/
+header h1{
+	text-align: center;
+}
+
+header h1 img{
+	max-width: 50%;
+}
+
+.sacola{
+	display: none;
+}
+
+.menu-opcoes{
+	position: static;
+	text-align: center;
+}
+
+/*aumentar o espaço*/
+.menu-opcoes ul li{
+	display: inline-block;
+	margin: 5px;
+}
+
+/*Ajuste a seção de busca, o menu da esquerda e a imagem de destaque.*/
+.busca,
+.menu-departamentos,
+.destaque img{
+	margin-right: 0;
+	width: 100%;
+}
+
+/*tirar a restrição de largura do painel para ele ocupar a tela toda.*/
+.painel{
+	width: auto;
+}
+
+/*redimensioná-los para encaixar 3 em cada linha.*/
+.painel li{
+	width: 30%;
+}
+
+.painel img{
+	width: 100%;
+}
+
+/*reposicionar o controle de pause/play:*/
+.play,
+.pause{
+	top: auto;
+	right: auto;
+	
+	left: 10px;
+	bottom: 10px;
+}
+
+/*usar mais media queries para ajustar outros detalhes do layout con-
+forme o tamanho da tela varia entre 320px e 939px.*/
+@media (min-width: 480px){
+	header h1{
+		margin: 5px;
+	}
+	.menu-departamentos{
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+	}
+	.menu-departamentos nav > ul{
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
+}
+
+/*Em telas um pouco maiores, como tablets (um iPad tem 768px por exemplo), podemos querer fazer outros
+ajustes com uma media query:*/
+@media (min-width: 720px) {
+	header h1 {
+	text-align: left;
+	}
+.menu-opcoes {
+	position: absolute;
+}
+.sacola {
+	display: block;
+}
+.painel li {
+	width: 15%;
+}
+.busca, .menu-departamentos {
+	margin-right: 1%;
+	width: 30%;
+}
+.menu-departamentos nav > ul {
+	-webkit-column-count: 1;
+	-moz-column-count: 1;
+	column-count: 1;
+
+}
+.destaque img {
+	width: 69%;	
+	}
+}
